@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "Daniel Test":"Needs to be built out"
+  },
+  "items":[
+    {
+      "id":69,
+      "copy":"This is my first task!",
+      "tags":[
+        {
+          "name":"Shopping List",
+          "color":"green"          
+        }
+      ]
+    }
+  ]  
+}

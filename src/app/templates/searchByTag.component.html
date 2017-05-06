@@ -1,0 +1,16 @@
+<div class="tagsContainer">
+  <div class='tag generalBox' *ngFor="let tag of taskService.tagsList" (click)="tagSelected(tag.name)" [ngClass]="{'active': selectedTags.indexOf(tag.name) >= 0}">
+    <div class='tagName'>
+      {{tag.name}}
+    </div>
+    <div class='centerAssist'></div>
+  </div>
+</div>
+<div class="searchResults">
+  <tool-bar-component [tools]='toolList' (toolBarReturnList)="toolBarReturnHandler($event)"></tool-bar-component>
+  
+  <div class='generalBox listItem' *ngFor='let item of items | search: searchVal; let i = index; trackBy: i' (click)='openTask(item.id)'>
+    {{item.copy}}
+    <span [ngClass]="{'deleteActive':secondClick && deleteActiveIndex === i}" class="deleteButton" (click)="deleteClicked($event, item.id, i)"></span>
+  </div>
+</div>

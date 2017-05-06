@@ -1,0 +1,210 @@
+/* this file will be extracted to main dist folder and is imported in index.html */
+/* This file is for setting global styles  */
+@import 'reset';
+@import 'variables';
+
+$nav_button_color: #2A829F;
+$nav_button_color_active: #9AD6EA;
+
+html, body{
+  font-family: 'Open Sans', sans-serif;
+  background:#404040;
+  color:#457380;
+}
+html{
+  height:100%;
+}
+body{
+  min-height: 100%;  
+  background-color: #6DD6BA;
+  background: #6DD6BA -webkit-gradient(linear, left top, left bottom, from(#6DACD6), to(#6DD6BA)) no-repeat;
+  background: #6DD6BA -moz-linear-gradient(top, #6DACD6, #6DD6BA) no-repeat;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#6DACD6, endColorstr=#6DD6BA) no-repeat;
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#6DACD6, endColorstr=#6DACD6)" no-repeat;
+}
+
+nav {
+    text-align: right;
+    margin-bottom: 10px;
+}
+nav a {
+    margin-bottom: 4px;
+}
+
+
+main {
+  padding: 0px 10px 10px;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  padding-left: 6px;
+  text-shadow: 2px 2px 1px #0b4656;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.generalBox {
+  background-color: #fff;
+  border-radius: 3px;
+  padding: 10px 16px;
+  transition: all .1s;
+  outline: none;
+  box-shadow: 0 7px 2px -6px rgba(34, 34, 34, 0.3);
+  border: none;
+  margin-bottom:5px;
+  position:relative;
+
+  &.deletable{
+    padding: 10px 30px 10px 16px;
+  }
+
+  .deleteButton{
+    position: absolute;
+    right: 5px;
+    top: 3px;
+    height: 30px;
+    width: 30px;
+    background-color: #ffb9b9;
+    border-radius: 3px;
+    display: inline-block;
+
+    &:hover {
+      background-color: #f9abab;
+    }
+
+    &.deleteActive{
+      background-color: #ff0000;
+      border: 2px solid #f15c5c;
+      box-sizing: border-box;
+    }
+  }
+
+  &:active{
+    box-shadow: 0px 2px 0px 0px rgba(51, 51, 51, 0.5);
+    position: relative;
+    top: -1px;
+  }
+}
+
+.listItem {
+  white-space: nowrap;
+  overflow: hidden!important;
+  text-overflow: ellipsis;
+  padding: 10px 16px;
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+  margin-top: 10px;
+  max-height: 500px;
+  overflow-y: scroll;
+  min-height: 200px;
+  box-sizing: border-box;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 22px;  
+  font-family: inherit;
+  border: none;
+  outline: none;
+}
+
+
+.buttonStyle {
+    background-color: #92a5ab;
+    color: #ffffff;
+    padding: 9px 16px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0px 0px 4px 4px;
+    display: inline-block;
+    box-shadow: inset 2px 0px 4px 0px #627277, inset -2px -3px 4px 0px #404748;
+    margin-left: 2px;
+    position: relative;
+    top: -1px;
+
+  &.active{
+    box-shadow: inset 2px 0px 4px 0px #165f75, inset -2px -3px 4px 0px #054456;
+    background-color: #2f8ba5;
+    color: #fff;
+  }
+
+  &:active:hover {
+    box-shadow: inset 1px 0px 2px 0px #217f9c, inset -1px -2px 2px 0px #106077;
+    background-color: #1c9ec3;
+    color: #fff;
+    position: relative;
+    top: 0px;
+  }
+  &:hover {
+    box-shadow: inset 2px 0px 4px 0px #217f9c, inset -2px -3px 4px 0px #106077;
+    background-color: #1c9ec3;
+    color: #fff;
+  }
+}
+
+.saveButton {
+    margin-top: 10px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    float:right;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+.tag {
+    margin: 0px 15px 15px 0px;
+    width: 130px;
+    height: 60px;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 0;
+
+
+  &.active {
+      background: #d0ffce;
+
+    .tagName {
+      color: #125822;
+      pointer-events: none;
+    } 
+  }
+}
+
+
+.tagName {
+  vertical-align: middle;
+  display: inline-block;
+  text-align: center;
+  width: 130px;
+  font-size: 17px;
+  padding: 5px;
+  box-sizing: border-box;
+  line-height: 1.4;
+  color: #5b8692;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.centerAssist {
+  height: 60px;
+  vertical-align: middle;
+  display: inline-block;
+  width: 0px;
+  background: pink;
+}
+
+manage-tags-component input{
+  font-size: 20px;
+}
