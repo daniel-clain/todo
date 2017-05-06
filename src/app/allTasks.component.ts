@@ -7,12 +7,13 @@ import { Router } from '@angular/router';
     template: `
         <h1>All Tasks</h1>
         <div class='allTasksList' *ngIf='taskService.rootObj !== undefined'>
-            <tool-bar-component [tools]='toolList' (toolBarReturnList)="toolBarReturnHandler($event)"></tool-bar-component>
+            <tool-bar-partial [tools]='toolList' (toolBarReturnList)="toolBarReturnHandler($event)"></tool-bar-partial>
             <div class='generalBox listItem' *ngFor='let item of taskService.rootObj.items | search: searchVal; let i = index; trackBy: i' (click)='openTask(item.id)'>
-                <span>{{ item.copy }}</span>
+                <color-dot-partial [colorsArray]="item.tags | colorsList"></color-dot-partial>
+                <span [innerHtml]="item.copy"></span>
                 <span [ngClass]="{'deleteActive':secondClick && deleteActiveIndex === i}" class="deleteButton" (click)="deleteClicked($event, item.id, i)"></span>
             </div>
-        </div>        
+        </div>
     `
 })
 

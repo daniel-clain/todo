@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
-  selector: 'tool-bar-component',
+  selector: 'tool-bar-partial',
   template: `
     <div class="toolBarContainer" *ngIf="tools">
         <div class="tool" *ngFor="let tool of tools">
@@ -16,7 +16,6 @@ export class ToolBarComponent{
     @Output() private toolBarReturnList = new EventEmitter();
 
     private valueChange() {
-        console.log(this.searchVal)
         this.toolBarReturnList.emit([{name:'search', val:this.searchVal}]);
     }
 }

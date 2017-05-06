@@ -9,32 +9,31 @@ import { Router } from '@angular/router';
 export class SearchByTagComponent implements OnInit {
   
   items;
-  itemsIds=[];
+  itemsIds = [];
   secondClick=false;
-  selectedTags=[];  
+  selectedTags = [];
   timer;
   deleteActiveIndex;
   newItemsList;
-  toolList=['search-component'];
+  toolList = ['search-component'];
   searchVal;
 
   constructor(public taskService: TaskService, private router: Router) {}
   public ngOnInit() {
   }
   
-  public tagSelected(tagName) {
-      if(this.selectedTags.indexOf(tagName) >= 0) {
-        this.selectedTags.splice(this.selectedTags.indexOf(tagName),1)
+  public tagSelected(tag) {
+      if(this.selectedTags.indexOf(tag.name) >= 0) {
+        this.selectedTags.splice(this.selectedTags.indexOf(tag.name),1)
       } else {
-        this.selectedTags.push(tagName);
+        this.selectedTags.push(tag.name);
       }
-      if(this.selectedTags.length !== 0) {        
+      if(this.selectedTags.length !== 0) {
         this.filterItems();
       } else {
         this.items=[];
         this.itemsIds=[];
       }
-      
   }
 
   public filterItems() {
@@ -42,12 +41,12 @@ export class SearchByTagComponent implements OnInit {
     this.itemsIds=[];
     let items = this.taskService.rootObj.items;
     for(let i=0;i<items.length;i++){
-      this.checkWhichTasksHaveTheHightlightedTags(items[i]);      
+      this.checkWhichTasksHaveTheHightlightedTags(items[i]);
     }
     this.items = this.newItemsList;
   }
 
-  checkWhichTasksHaveTheHightlightedTags(item) {    
+  checkWhichTasksHaveTheHightlightedTags(item) {
     let foundAll = true;
     for( let k=0;k<this.selectedTags.length;k++) {
       if(item.tags.indexOf(this.selectedTags[k]) === -1) {
@@ -55,15 +54,15 @@ export class SearchByTagComponent implements OnInit {
         break;
       }
     }
-    if(foundAll) {    
-      if(this.itemsIds.indexOf(item.id) === -1) {  
+    if(foundAll) {
+      if(this.itemsIds.indexOf(item.id) === -1) {
         this.newItemsList.push(item);
         this.itemsIds.push(item.id);
       }
     } else {
-      if(this.itemsIds.indexOf(item.id) === -1) { 
+      if(this.itemsIds.indexOf(item.id) === -1) {
         for(let j=0;j<this.newItemsList.length;j++) {
-          if(this.newItemsList[j].id === item.id) {            
+          if(this.newItemsList[j].id === item.id) {
             this.itemsIds.splice(this.itemsIds.indexOf(item.id),1);
             delete this.newItemsList[j];
           }
@@ -71,17 +70,18 @@ export class SearchByTagComponent implements OnInit {
       }
     }
   }
+
   public openTask(id) {
-      this.router.navigate(['/edit',id]);
+    this.router.navigate(['/edit',id]);
   }
 
   public deleteClicked(e,id,index) {
     e.stopPropagation();
     this.deleteActiveIndex = index;
     if(this.secondClick){
-      clearTimeout(this.timer);   
+      clearTimeout(this.timer);
       this.secondClick = false;
-      this.deleteActiveIndex = -1; 
+      this.deleteActiveIndex = -1;
       this.taskService.deleteToArchive(id);
       this.filterItems();
 
@@ -95,7 +95,6 @@ export class SearchByTagComponent implements OnInit {
   public threeSecondDeactivate() {
       this.secondClick = false;
       this.deleteActiveIndex = -1;
-      
   }
 
   public toolBarReturnHandler(toolsList) {
@@ -105,5 +104,4 @@ export class SearchByTagComponent implements OnInit {
       }
     }
   }
-  
 }

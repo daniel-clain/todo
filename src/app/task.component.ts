@@ -13,12 +13,9 @@ import {
         <h1>{{pageTitle}}</h1>
 
         <textarea class="generalBox" *ngIf='subView === "copy"' [(ngModel)]="this.taskService.activeTask.copy"></textarea>
-
-        <tags-component 
-            (tagListUpdateSource)="tagListUpdate($event)"
-            [selectedTags]="this.taskService.activeTask.tags"
-            *ngIf='subView === "tags" && this.taskService.activeTask !== undefined'>
-        </tags-component>
+        <div *ngIf='subView === "tags"'>
+            <tags-partial (tagSelectedOutput)="tagSelected($event)" [selectedTagsInput]="selectedTags"></tags-partial>
+        </div>
 
         <button class="buttonStyle saveButton" (click)='save(textArea)'>Save</button>
         <button class="buttonStyle saveButton" (click)='subView="tags" '>Tags</button>
@@ -27,9 +24,9 @@ import {
 })
 
 export class TaskComponent implements OnInit {
-    pageTitle = 'New Task'
-    subView='copy'
-    taskTagsList = []
+    pageTitle = 'New Task';
+    subView='copy';
+    selectedTags = [];
    
 
     constructor(
@@ -41,32 +38,40 @@ export class TaskComponent implements OnInit {
     ngOnInit(){
         this.route.params.subscribe((params: Params) => {
             this.subView='copy'
-            if(params.id === undefined) {                
+            if(params.id === undefined) {
                 this.pageTitle="New Task";
-                this.taskTagsList = []
+                this.selectedTags = [];
                 this.taskService.activeTask = {
                     id: new Date().valueOf(),
                     copy: '',
                     tags: []
                 }
-            }else{           
+            } else {           
                 this.pageTitle="Edit Task";
-                this.loadEditTask(parseInt(params.id))
+                this.loadEditTask(parseInt(params.id));
             }
         });
     }
 
+    tagSelected(tag){
+        if(this.selectedTags.indexOf(tag.name) >= 0) {
+            this.selectedTags.splice(this.selectedTags.indexOf(tag.name),1);
+        } else {
+            this.selectedTags.push(tag.name);
+        }      
+    }
+
     tagListUpdate(updatedList){
         console.log('shazam: ', updatedList);
-        this.taskTagsList = updatedList;
+        this.selectedTags = updatedList;
     }
 
     public save() {
-        let addNew = false
+        let addNew = false;
         let items = this.taskService.rootObj.items;
-        for(let i=0;i<items.length;i++){
+        for(let i=0;i<items.length;i++) {
             if(items[i].id === this.taskService.activeTask.id) {
-                addNew=false                
+                addNew=false;
                 this.taskService.rootObj.items[i] = this.taskService.activeTask;
                 break;
             } else {
@@ -93,5 +98,6 @@ export class TaskComponent implements OnInit {
             }
         }
     }
+
 
 }

@@ -22,10 +22,12 @@ import { ManageTagsComponent } from './manageTags.component';
 // Pipes
 import { OrderPipe } from './pipes/order.pipe';
 import { SearchPipe } from './pipes/search.pipe';
+import { ColorsListPipe } from './pipes/colorsList.pipe';
 
 // Partials
 import { ToolBarComponent } from './partials/toolBar.component'
 import { TagsComponent } from './partials/tags.component';
+import { ColorDotComponent } from './partials/colorDot.component';
 
 
 import '../styles/styles.scss';
@@ -37,9 +39,10 @@ import '../styles/styles.scss';
     AllTasksComponent,
     SearchByTagComponent,
     ManageTagsComponent,
-    OrderPipe,SearchPipe,
-    ToolBarComponent,
-    TagsComponent,
+    // Pipes
+    OrderPipe,SearchPipe,ColorsListPipe,
+    // Partials
+    ToolBarComponent,TagsComponent,ColorDotComponent
   ],
   imports: [
     BrowserModule,
