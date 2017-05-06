@@ -13,8 +13,7 @@ import { Router } from '@angular/router';
                 <span [ngClass]="{'deleteActive':secondClick && deleteActiveIndex === i}" class="deleteButton" (click)="deleteClicked($event, item.id, i)"></span>
             </div>
         </div>        
-    `,
-    styles: [``]
+    `
 })
 
 export class AllTasksComponent {
